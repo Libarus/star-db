@@ -1,25 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
+import SwapiService from '../../services/swapi-service'
 import './random-planet.css';
 
-const RandomPlanet = () => {
-    return (
-        <div className="card card-style">
-            <div className="card-body">
+export default class RandomPlanet extends Component {
 
-                <div className="row">
-                    <div className="col-2">
-                        <img src={`https://starwars-visualguide.com/assets/img/planets/2.jpg`} className="thumbnail thumbnail-style" />
+    swapiService = new SwapiService();
+
+    state = {
+        id: 0,
+        name: 'Name planet ... loading ...',
+        population: '---',
+        rotationPeriod: '---',
+        diameter: '---'
+    };
+
+    constructor() {
+        super();
+        this.updatePlanet();
+        setInterval(this.updatePlanet, 5000);
+    }
+
+    updatePlanet = () => {
+        const planetId = Math.floor(Math.random() * 21+2);
+        this.swapiService
+            .getPlanet(planetId)
+            .then((planet) => {
+                this.setState(planet);
+            });
+    };
+
+    render() {
+
+        const { id, name, population, rotationPeriod, diameter } = this.state;
+
+        return (
+            <div className="card card-style">
+                <div className="card-body">
+
+                    <div className="row">
+                        <div className="col-2">
+                            <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                                 className="thumbnail thumbnail-style"/>
+                        </div>
+                        <div className="col">
+                            <h4 className="card-title">{ name }</h4>
+                            <p className="card-text">Population: { population }</p>
+                            <p className="card-text">Rotation period: { rotationPeriod } standard hours</p>
+                            <p className="card-text">Diametr: { diameter } km</p>
+                        </div>
                     </div>
-                    <div className="col">
-                        <h4 className="card-title">Name planet</h4>
-                        <p className="card-text">Population: ####</p>
-                        <p className="card-text">Rotation period: ####</p>
-                        <p className="card-text">Diametr: ####</p>
-                    </div>
+
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
-
-export default RandomPlanet;

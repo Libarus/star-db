@@ -10,7 +10,7 @@ const Content = () => {
     return (
         <div className="row content">
 
-            <div class="col-6">
+            <div className="col-6">
                 <ItemList/>
             </div>
 
