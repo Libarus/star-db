@@ -40,7 +40,8 @@ export default class RandomPlanet extends Component {
                     <div className="row">
                         <div className="col-2">
                             <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-                                 className="thumbnail thumbnail-style"/>
+                                 className="thumbnail thumbnail-style"
+                                 alt={name}/>
                         </div>
                         <div className="col">
                             <h4 className="card-title">{ name }</h4>

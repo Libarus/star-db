@@ -8,7 +8,7 @@ const StarshipDetails = () => {
 
                 <div className="row">
                     <div className="col-4">
-                        <img src={`https://starwars-visualguide.com/assets/img/starships/15.jpg`} className="thumbnail starship-thumbnail-style" />
+                        <img src={`https://starwars-visualguide.com/assets/img/starships/15.jpg`} className="thumbnail starship-thumbnail-style" alt="Starship name"/>
                     </div>
                     <div className="col-5">
                         <h4 className="card-title">Starship name</h4>
